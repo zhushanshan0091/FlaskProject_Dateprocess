@@ -1,0 +1,111 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}首页{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    #my_foot {
+        color: blue;
+        text-align: center;
+        border-top: 1px solid coral;
+        font-size: 14px;
+    }
+
+    #space_top {
+        height: 150px;
+    }
+
+    #space_down {
+        height: 150px;
+    }
+
+    .jumbotron {
+        text-align: center;
+        background-color: whitesmoke;
+        height: 400px;
+        font-family: "STKaiti", sans-serif;
+    }
+
+    .btn-group{
+        display: inline;
+    }
+</style>
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('user.index') }}">首页</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('user.center') }}">用户管理 <span class="sr-only">(current)</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">环境 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">FAT1</a></li>
+                        <li><a href="#">FAT2</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">双活环境</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">基金系统 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">公募基金</a></li>
+                        <li><a href="#">私募基金你</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">投顾组合</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">理财系统 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">理财子</a></li>
+                        <li><a href="#">代销理财</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">其他</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="请输入搜索内容">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('user.register') }}">注册</a></li>
+                <li><a href="{{ url_for('user.login') }}">登录</a></li>
+                <li><a href="#">退出</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block content %}
+{% block middle %}
+    <div class="jumbotron">
+        <h1>欢迎使用造数平台</h1>
+        <br>
+        <p>主要提供功能如下：</p>
+        <p>产品、账户、交易等相关数据的查询</p>
+        <p>指定业务数据的批量插入</p>
+        <br>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<p id="my_foot">@made by zhushanshan</p>
+{% endblock %}
+{% endblock %}
+
+{% block myjs %} {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base-new.html'%}
+{% block title %}
+用户登录
+{% endblock %}
+
+{% block middle %}
+<div style="height: 450px">
+    <h1 style="color: brown">{{ msg }}</h1>
+    <form action="{{ url_for('user.login') }}" , method="post">
+        <p><input type="text" name="username" placeholder="用户名"></p>
+        <p><input type="password" name="password" placeholder="用户密码"></p>
+        <p><input type="submit" value="用户登录"></p>
+    </form>
+</div>
+{% endblock %}
