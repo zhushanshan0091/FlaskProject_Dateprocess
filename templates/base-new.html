@@ -5,29 +5,17 @@
 {{ super() }}
 <style>
     #my_foot {
-        color: blue;
+        color: darkgreen;
         text-align: center;
-        border-top: 1px solid coral;
         font-size: 14px;
-    }
-
-    #space_top {
-        height: 150px;
-    }
-
-    #space_down {
-        height: 150px;
+        line-height: 1;
+        font-family: "Microsoft YaHei",serif;
     }
 
     .jumbotron {
         text-align: center;
         background-color: whitesmoke;
-        height: 400px;
         font-family: "STKaiti", sans-serif;
-    }
-
-    .btn-group{
-        display: inline;
     }
 </style>
 {% endblock %}
@@ -39,19 +27,18 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ url_for('user.index') }}">首页</a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url_for('user.center') }}">用户管理 <span class="sr-only">(current)</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">环境 <span class="caret"></span></a>
+                       aria-expanded="false">接口自动化 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">FAT1</a></li>
-                        <li><a href="#">FAT2</a></li>
+                        <li><a href="#">单接口自动化</a></li>
+                        <li><a href="#">多接口联动自动化</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">双活环境</a></li>
+                        <li><a href="#">环境配置</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -92,20 +79,30 @@
 {% endblock %}
 
 {% block content %}
-{% block middle %}
-    <div class="jumbotron">
-        <h1>欢迎使用造数平台</h1>
-        <br>
-        <p>主要提供功能如下：</p>
-        <p>产品、账户、交易等相关数据的查询</p>
-        <p>指定业务数据的批量插入</p>
-        <br>
+    {% block middle %}
+    <div class="table-responsive well" style="height: 485px">
+        <div class="jumbotron">
+            <h1 style="text-shadow: darkgray 2px 1px 3px;">欢迎使用造数平台</h1>
+            <br>
+            <p>实现接口自动化</p>
+            <p>批量插入指定业务数据</p>
+            <p>各类系统的产品、账户、交易等相关数据查询</p>
+            <br>
+            <p style="text-shadow: darkgray 2px 1px 3px; color: brown">请选择操作环境</p>
+            <div class = "col-md-offset-5 col-lg-offset-4col-xl-offset-4">
+                <select class="form-control" style="width: 30%">
+                    <option>FAT1</option>
+                    <option>FAT2</option>
+                    <option>双活</option>
+                </select>
+            </div>
+        </div>
     </div>
-{% endblock %}
+    {% endblock %}
 
-{% block footer %}
-<p id="my_foot">@made by zhushanshan</p>
-{% endblock %}
+    {% block footer %}
+        <p id="my_foot" style="text-shadow: darkgray 3px 1px 3px;">造数平台 made by zhushanshan</p>
+    {% endblock %}
 {% endblock %}
 
 {% block myjs %} {% endblock %}

@@ -2,26 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客户中心</title>
+    <title>用户管理</title>
     <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 {% extends 'base-new.html'%}
 
 {% block title %}
-    用户展示
+用户管理
 {% endblock %}
 
 {% block middle %}
-    <div>
-        <br>{{ msg }}
-        <br><span>用户共有：{{ users | length }} 人！</span>
+<div class="container-fluid">
+    <ol class="breadcrumb" style="background-color: white">
+        <li><a href="{{ url_for('user.index') }}">首页</a></li>
+        <li class="active">用户管理</li>
+    </ol>
+    <h3 style="text-shadow: darkgray 2px 1px 3px">用户信息查询 <small>当前用户共有{{ users | length }} 人</small></h3>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon">客户号/手机号</span>
+                <input type="text" class="form-control" name="search" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <input type="submit" class="btn btn-default" value="搜索" id="search">
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+    <br>{{ msg }}
+    <div class="table-responsive well" style="height: 340px">
         {% if users %}
-        <h1>全部客户信息如下</h1>
-        <br>客户号/手机号:<input type="text" name="search" placeholder="请输入搜索内容"><input type="submit" value="搜索" id="search">
-        <br><br>
-        <table border="1" cellpadding="0" width="60%">
-            <tr>
+        <table class="table table-striped table-hover>
+            <tr class="warning">
                 <th>序号</th>
                 <th>用户名</th>
                 <th>手机号</th>
@@ -42,34 +55,33 @@
             {% endfor %}
         </table>
         {% endif %}
-        <br><br><br>
     </div>
+</div>
 
 <script>
-    $('#search').click(function (){
+    $('#search').click(function () {
         // alert('aaaaaa')
         let content = $("input[name='search']").val()
         // alert(content)
-        location.href = "{{ url_for('user.search') }}?search="+content
+        location.href = "{{ url_for('user.search') }}?search=" + content
     })
 </script>
 
 <script>
-    function del(id){
+    function del(id) {
         // console.log(username)
-        location.href='/delete?id=' + id
+        location.href = "{{ url_for('user.delete') }}?id=" + id
     }
 </script>
 
 <script>
-    function update(id){
+    function update(id) {
         // console.log(username)
-        location.href='/update?id=' + id
+        location.href = "{{ url_for('user.update') }}?id=" + id
     }
 </script>
 
 {% endblock %}
-
 
 </body>
 </html>

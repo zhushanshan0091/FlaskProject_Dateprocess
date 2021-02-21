@@ -4,14 +4,52 @@
 {% endblock %}
 
 {% block middle %}
-<div style="height: 450px">
-    <h1 style="color: brown">{{ msg }}</h1>
-    <form action="{{ url_for('user.register') }}", method="post">
-        <p><input type="text" name="username" placeholder="用户名"></p>
-        <p><input type="password" name="password" placeholder="用户密码"></p>
-        <p><input type="password" name="repassword" placeholder="确认密码"></p>
-        <p><input type="number" name="phone" placeholder="手机号码"></p>
-        <p><input type="submit" value="用户注册"></p>
+<div class="table-responsive well" style="height: 485px">
+    <ol class="breadcrumb" style="background-color: white">
+        <li><a href="{{ url_for('user.center') }}">用户管理</a></li>
+        <li class="active">用户注册</li>
+    </ol>
+    <h1 style="text-shadow: darkgray 2px 1px 3px;  text-align: center; font-family: 华文楷体;">欢迎注册造数平台！</h1><br>
+    <h5 style="text-shadow: darkgray 2px 1px 3px; text-align: center; color: brown">{{ msg }}</h5>
+    <form class="form-horizontal" action="{{ url_for('user.register') }}", method="post">
+        <div class="form-group">
+            <label for="inputusername" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputusername" name="username" placeholder="请输入中文、英文或数字..." style="width: 80%">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="请输入英文或数字..." style="width: 80%">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputRepassword" class="col-sm-2 control-label">确认密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputRepassword" name="repassword" placeholder="请再次输入密码..." style="width: 80%">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPhone" class="col-sm-2 control-label">确认密码</label>
+            <div class="col-sm-10">
+                <input type="phone" class="form-control" id="inputPhone" name="phone" placeholder="请输入11位手机号码..." style="width: 80%">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> 同意并愿意遵守 <a href="{{ url_for('user.useragreement') }}">用户协议</a>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">注册</button>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}

@@ -17,6 +17,7 @@ user_bp = Blueprint('user', __name__, url_prefix='/user')
 def index():
     return render_template('base-new.html')
 
+
 # 用户展示
 @user_bp.route('/center', endpoint='center')
 def user_center():
@@ -32,7 +33,7 @@ def user_center():
     # return render_template('user/show.html', users=users)
 
 
-@user_bp.route('/delete', endpoint='del')
+@user_bp.route('/delete', endpoint='delete')
 def delete_user():
     # # 获取show.html传递过来的username
     # username = request.args.get('username')
@@ -56,27 +57,29 @@ def delete_user():
         # db.session.delete(user)
         # 提交该操作
         db.session.commit()
-        return redirect('/')
+        msg = user.username + '用户信息删除成功！'
+        return redirect(url_for('user.center'))
 
     return render_template('user/center.html', msg='该数据不存在，删除失败！')
 
 
-@user_bp.route('/update', methods=['GET', 'POST'], endpoint='upd')
+@user_bp.route('/update', methods=['GET', 'POST'], endpoint='update')
 def update_user():
     # 获取update.html传递过来的参数
     if request.method == 'POST':
         id = request.form.get('id')
-        print('进入update的post请求')
-        print('id: ', id)
         # 获取id对应用户
         user = User.query.get(id)
-        print('user: ', user)
         if user:
-            user.username = request.form.get('username')
-            user.password = hashlib.sha256(request.form.get('password').encode('utf-8')).hexdigest()
-            user.phone = request.form.get('phone')
+            if request.form.get('username'):
+                user.username = request.form.get('username')
+            if request.form.get('password'):
+                user.password = hashlib.sha256(request.form.get('password').encode('utf-8')).hexdigest()
+            if request.form.get('phone'):
+                user.phone = request.form.get('phone')
             db.session.commit()
-            return redirect('/')
+            msg = user.username + '用户信息修改成功！'
+            return  redirect(url_for('user.center'))
 
         return render_template('user/center.html', msg='无此客户，修改失败！')
 
@@ -206,6 +209,7 @@ def logout_blueprint():
     """
     return '客户退出'
 
-@user_bp.route('/test')
-def test():
-    return render_template('base-new.html')
+
+@user_bp.route('/useragreement')
+def useragreement():
+    return render_template('user/useragreement.html')
